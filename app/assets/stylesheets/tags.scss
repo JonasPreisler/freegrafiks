@@ -1,0 +1,19 @@
+// Place all the styles related to the Tags controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+#tag{
+  margin: 50px;
+  width: 400px;
+  span {
+    display: block;
+  }
+  p {
+    background: #e2e2e2;
+    display: inline;
+    padding:10px;
+    line-height: 2em;
+    border-radius: 10px;
+  }
+}

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :categories
   devise_for :users
   devise_for :models
   resources :posts do
@@ -8,6 +9,9 @@ Rails.application.routes.draw do
     end
     resources :comments
   end
+  resources :tags
+
+  get ':name' => 'users#show', as: 'user'
 
   root 'posts#index'
 

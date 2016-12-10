@@ -15,9 +15,16 @@
  */
  
 
+@font-face{
+font-family:"Avenir Next";
+src:url(font-path("avenirnext.otf"));
+src:url(font-path("avenirnext.otf?#iefix")) format("embedded-opentype"), url(font-path("avenirnext.otf")) format("otf"), url(font-path("avenirnext.otf")) format("truetype");
+font-style:normal;
+font-weight:normal;}
+
 body {
-  font-family: "Proxima Nova";
-  font-weight: 100;
+  font-family: "Avenir Next";
+  font-weight: 400;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -25,7 +32,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .wrapper {
-  width: 80%;
+  width: 95%;
   margin: 0 auto;
 }
 
@@ -52,13 +59,15 @@ header {
   padding: 2rem 0;
   border-bottom: 1px solid #E4E4E4;
   #logo {
+    font-family: "Canaro";
     float: left;
-    font-size: 1.75rem;
+    font-size: 1.5rem;
+    font-weight: 600;
     a {
-      color: #333233;
+      color: #ff7473;
       text-decoration: none;
       &:hover {
-        color: #50A7C7;
+        color: #333333;
       }
     }
   }

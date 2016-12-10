@@ -1,11 +1,13 @@
 #post_show
   %h1= @post.title
+  %h3= link_to @post.tag.name, tag_path(:id => @post.tag.id)
   %p.username
     Shared by
     = @post.user.name
-    about
+    = @post.created_at.strftime("%b %d. %Y")
+    (about
     = time_ago_in_words(@post.created_at)
-    ago
+    ago)
   .clearfix
     .post_image_description
       = image_tag @post.image.url(:medium)
@@ -14,16 +16,24 @@
       = link_to "Visit link", @post.link, target: "_blank", class: "button"
       = link_to like_post_path(@post), method: :get, class: "data" do
         %i.fa.fa-thumbs-o-up
-        = pluralize(@post.get_upvotes.size, "Wow")
+        = pluralize(@post.get_upvotes.size, "Useful")
       = link_to dislike_post_path(@post), method: :get, class: "data" do
         %i.fa.fa-thumbs-o-down
         = pluralize(@post.get_downvotes.size, "Meh")
       %p.data
         %i.fa.fa-comments-o
-        - pluralize(@post.comments.count, "Comment")
+        = pluralize(@post.comments.count, "Comment")
+        .user
+          .user.avatar
+          = link_to (image_tag current_user.avatar.url(:small)), user_path(current_user.name)
+          .data.clearfix
+            %p.username
+              Shared by
+              = link_to (@post.user.name), user_path(current_user.name)
       - if @post.user == current_user
         = link_to "Edit", edit_post_path(@post), class: "data"
         = link_to "Delete", post_path(@post), method: :delete, data: { confirm: "Are you sure?" }, class: "data"
+      = link_to "Back", posts_path
     #random_post
       %h3 Random Inspiration
       .post
@@ -34,8 +44,8 @@
             %h2= link_to @random_post.title, post_path(@random_post)
           .data.clearfix
             %p.username
-              Shared ny
-              = @random_post.user.name
+              Shared by
+              = link_to (@random_post.user.name), user_path(current_user.name)
             %p.buttons
               %span
                 %i.fa.fa-comments-o

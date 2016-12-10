@@ -4,16 +4,20 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.all.order("created_at DESC")
+    @user = User.where name: params[:name]
   end
 
   def show
     @comments = Comment.where(post_id: @post)
     @random_post = Post.where.not(id: @post).order("RANDOM()").first
+    @user = User.where name: params[:name]
+    @user = User.where avatar: params[:avatar]
+    @tag = Tag.where name: params[:name]
   end
 
   def new
     @post = current_user.posts.build
-
+    @tags = Tag.all
   end
 
   def create
@@ -59,6 +63,6 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:title, :link, :description, :image)
+    params.require(:post).permit(:title, :link, :description, :image, :tag_id, :tag, :name)
   end
 end

@@ -1,5 +1,7 @@
-= simple_form_for @post do |f|
+= simple_form_for @post, html: { multipart: true } do |f|
   = f.input :image
+  = f.select :tag_id, options_from_collection_for_select(@tags, "id", "name"),
+:prompt => "Select field"
   = f.input :title
   = f.input :link
   = f.input :description
